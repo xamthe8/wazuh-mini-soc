@@ -16,7 +16,7 @@ I wrote custom rule 100100. It fires when schtasks.exe runs with /create, and it
 | Alert | Shell chain only, level 3-4 | Rule 100100, level 10 |
 | MITRE tag | None | T1053.005 (Scheduled Task) |
 
-![Alert 100100](../screenshots/alert-100100.png)
+![Alert 100100](../Screenshots/alert-100100.png)
 
 ## Things that tripped me up
 - Atomic Red Team failed to load in a new PowerShell window because script execution was blocked. Running Set-ExecutionPolicy Bypass -Scope Process -Force fixes it, but only for that window.
