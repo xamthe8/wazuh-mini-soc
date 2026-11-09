@@ -1,0 +1,20 @@
+<!-- Exception for 92213: PowerShell's own script policy test file in Temp -->
+<group name="local,sysmon,windows,">
+  <rule id="100200" level="3">
+    <if_sid>92213</if_sid>
+    <field name="win.eventdata.image" type="pcre2">(?i)^[c-z]:\\+Windows\\+System32\\+WindowsPowerShell\\+v1\.0\\+powershell\.exe$</field>
+    <field name="win.eventdata.targetFilename" type="pcre2">(?i)\\+AppData\\+Local\\+Temp\\+__PSScriptPolicyTest_[a-z0-9]+\.[a-z0-9]+\.ps1$</field>
+    <description>PowerShell script policy test file in Temp (known benign, tuned from 92213)</description>
+  </rule>
+</group>
+
+<!-- Exception for 92058: Windows PcaSvc maintenance running sdbinst.exe -m -bg -->
+<group name="local,sysmon,windows,">
+  <rule id="100201" level="3">
+    <if_sid>92058</if_sid>
+    <field name="win.eventdata.image" type="pcre2">(?i)^[c-z]:\\+Windows\\+System32\\+sdbinst\.exe$</field>
+    <field name="win.eventdata.commandLine" type="pcre2">(?i)sdbinst\.exe"?\s+-m\s+-bg$</field>
+    <field name="win.eventdata.parentCommandLine" type="pcre2">(?i)svchost\.exe\s+-k\s+LocalSystemNetworkRestricted\s+-p\s+-s\s+PcaSvc</field>
+    <description>sdbinst.exe -m -bg launched by Program Compatibility Assistant service (known benign, tuned from 92058)</description>
+  </rule>
+</group>

@@ -1,0 +1,25 @@
+# Phase 7: Tuning the noise
+
+My phone was buzzing for alerts I had already triaged as harmless, so this phase was about writing narrow exceptions instead of switching rules off.
+
+## The problem
+With Telegram set to level 10, two false positives could reach me:
+- Rule 92213 (level 15): any script or DLL written under a user's Temp folder, which includes PowerShell's own policy-test file.
+- Rule 92058 (level 12): Windows running sdbinst.exe as part of maintenance.
+
+## What I did
+Rule 100201 lowers 92058 to level 3, but only when all three things match: the real sdbinst.exe path, the exact -m -bg command line, and a parent of svchost.exe running the PcaSvc service. A real shim install would name a database file, so it wouldn't match and would stay at level 12.
+
+I wrote 100200 for 92213 the same way: only PowerShell's own policy-test file, written by the real powershell.exe.
+
+## Result
+Windows ran the maintenance task again, rule 100201 fired at level 3, and my phone stayed quiet.The older level 12 alerts are from before the exception was in place.
+
+![Tuned alert](../Screenshots/alert-100201-tuned.png)
+
+## What I haven't proven yet
+- Rule 100200 hasn't fired yet. My Atomic Red Team import triggered a different 92213 pattern (powershell-yaml helper files), which I left alone because it's a one-off setup artifact.
+- An Edge component unpacker also trips 92213. I haven't confirmed which process writes it, so I'm not hiding it yet.
+
+## What I learned
+A broad exception like "ignore everything in Temp" would hide the exact malware behaviour rule 92213 exists to catch. Tying each exception to the program, the path and the command line keeps real attacks visible.
