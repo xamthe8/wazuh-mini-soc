@@ -17,6 +17,6 @@ My main focus is alerting and tuning, so the right high-severity alerts reach me
 
 ## What's in this repo
 
-- [Phase 3: Baseline and false positive triage](notes/phase3-baseline.md)
-- [Phase 4: Attack simulation and first detection gap](notes/phase4-attack-simulation.md)
-- [Custom detection rule 100100](Detections/100100-schtasks-create.xml)
+- Baseline and false positive triage (notes/phase3-baseline.md)
+- Phase 4: Attack simulation and first detection gap (notes/phase4-attack-simulation.md)
+- Custom detection rule 100100 (Detections/100100-schtasks-create.xml)
