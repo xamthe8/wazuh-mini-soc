@@ -10,17 +10,15 @@ My main focus is alerting and tuning, so the right high-severity alerts reach me
 
 ## How it fits together
 
-```mermaid
-flowchart LR
-    subgraph Lab["Windows laptop, VirtualBox host-only network"]
-        W["Windows VM<br/>Sysmon + Wazuh agent<br/>192.168.56.102"]
-        U["Ubuntu VM<br/>Wazuh server<br/>192.168.56.101"]
-    end
-    W -->|"Sysmon logs"| U
-    W -->|"SSH test attacks"| U
-    U -->|"alerts, level 10 and above"| T["Telegram bot"]
-    T --> P["My phone"]
-    U --> D["Wazuh dashboard<br/>in my laptop browser"]
+```
+Windows VM (Sysmon + Wazuh agent)
+        |
+        | Sysmon logs, SSH test attacks
+        v
+Ubuntu VM (Wazuh server) --> alerts level 10+ --> Telegram bot --> my phone
+        |
+        v
+Wazuh dashboard (laptop browser)
 ```
 
 ## Lab environment
