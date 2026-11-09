@@ -2,13 +2,20 @@
 
 Home SOC lab built with Wazuh SIEM. Attack simulation, detection engineering, and incident response write-ups.
 
+## Results at a glance
+
+- **Closed a detection gap:** Wazuh missed a scheduled task persistence test (T1053.005), so I wrote custom rule 100100 and it now fires at level 10.
+- **Tuned noise without hiding attacks:** a narrow exception (rule 100201) stopped a Windows maintenance alert from buzzing my phone.
+- **Caught SSH brute force on Linux:** repeated failed logins from my Windows VM triggered rule 5712 and reached Telegram.
+![Telegram alerts from my Wazuh server](Screenshots/telegram-alert-100100.png)
+
 ## Why I built this
 
 I'm building toward an entry-level SOC analyst role. I hold the ISC2 CC certification and practice on TryHackMe, and I wanted hands-on experience with the full blue team workflow: collecting logs, detecting attacks, triaging alerts, and tuning detections.
 
 My main focus is alerting and tuning, so the right high-severity alerts reach me quickly without drowning me in noise.
 
-## How it fits together
+## How it works together
 
 ```mermaid
 flowchart LR
@@ -37,6 +44,14 @@ flowchart LR
 | Linux detection | Caught SSH brute force from my Windows VM | [Phase 8](notes/phase8-ssh-brute-force.md) |
 | Incident report | Investigated and documented the scheduled task attack | [Report 001](notes/incident-report-001-scheduled-task.md) |
 
+## Detections I wrote
+
+| Rule | What it does | Level | MITRE |
+|---|---|---|---|
+| 100100 | Alerts when schtasks.exe creates a scheduled task | 10 | T1053.005 |
+| 100201 | Lowers the known-benign sdbinst.exe maintenance alert (92058) | 3 | |
+| 100200 | Lowers PowerShell's own policy-test file alert (92213) | 3 | |
+
 ## What I learned
 
 - **Judge the event, not the wrapper.** Fields like manager.name look reassuring but appear on every alert. What matters is inside the event data: what ran, who ran it, from where, and when.
@@ -58,3 +73,8 @@ flowchart LR
 - `scripts/`: the Telegram integration scripts
 - `configs/`: example config with placeholders, never real secrets
 - `Screenshots/`: evidence for each write-up
+
+## About me
+
+Aspiring SOC analyst based in Lagos, Nigeria. ISC2 Certified in Cybersecurity (CC).
+- LinkedIn:www.linkedin.com/in/samuel-lowo-70227822a
