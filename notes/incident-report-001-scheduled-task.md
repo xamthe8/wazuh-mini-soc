@@ -47,7 +47,7 @@ On their own, none of these is a smoking gun. Together they look like persistenc
 I removed the task with the Atomic Red Team cleanup command and confirmed with schtasks /query that it no longer exists. The task from my first run stayed on the VM until I cleaned it up on 8 November, so it may have run once at its scheduled time. It only starts cmd.exe, so there was no harm, but I didn't check whether it ran.
 
 ## Root cause
-I ran the test myself.
+Since i ran the test thats what caused it.
 
 ## What went wrong in detection
 Before rule 100100 existed, Wazuh only raised low-level alerts about the shell chain. At my Telegram threshold of 10, I would have heard nothing about the scheduled task.
