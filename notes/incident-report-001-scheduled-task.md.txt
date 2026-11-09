@@ -1,6 +1,6 @@
 # Incident Report 001: Scheduled task persistence (simulated)
 
-This is a simulated incident. I ran the attack myself with Atomic Red Team so I could practise investigating and documenting one properly.
+This is a simulated incident. I ran the attack myself with Atomic Red Team so I could practice investigating and documenting one properly.
 
 | | |
 |---|---|
