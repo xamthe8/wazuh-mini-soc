@@ -10,15 +10,12 @@ My main focus is alerting and tuning, so the right high-severity alerts reach me
 
 ## How it fits together
 
-```
-Windows VM (Sysmon + Wazuh agent)
-        |
-        | Sysmon logs, SSH test attacks
-        v
-Ubuntu VM (Wazuh server) --> alerts level 10+ --> Telegram bot --> my phone
-        |
-        v
-Wazuh dashboard (laptop browser)
+```mermaid
+flowchart LR
+    A[Windows VM] --> B[Ubuntu Wazuh server]
+    B --> C[Telegram bot]
+    C --> D[My phone]
+    B --> E[Wazuh dashboard]
 ```
 
 ## Lab environment
