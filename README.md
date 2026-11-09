@@ -23,3 +23,4 @@ My main focus is alerting and tuning, so the right high-severity alerts reach me
 - [Phase 6: Telegram alerting](notes/phase6-telegram-alerting.md)
 - [Phase 7: Tuning the noise](notes/phase7-tuning.md)
 - [Phase 8: SSH brute force detection](notes/phase8-ssh-brute-force.md)
+- [Incident report 001: scheduled task persistence](notes/incident-report-001-scheduled-task.md)
