@@ -21,3 +21,4 @@ My main focus is alerting and tuning, so the right high-severity alerts reach me
 - [Attack simulation and first detection gap](notes/phase4-attack-simulation.md)
 - [Custom detection rule 100100](Detections/100100-schtasks-create.xml)
 - [Phase 6: Telegram alerting](notes/phase6-telegram-alerting.md)
+- [Phase 7: Tuning the noise](notes/phase7-tuning.md)
